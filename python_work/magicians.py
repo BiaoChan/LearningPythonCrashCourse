@@ -1,19 +1,26 @@
+def show_magicians(magicians):
+	for magician in magicians:
+		print(magician.title())
+
+
+# ~ def make_great(magicians):
+	# ~ for index in range(len(magicians)):
+		# ~ magicians[index] = "the great " + magicians[index]
+
+def make_great(magicians):
+	great_magicians = []
+	for magician in magicians:
+		great_magicians.append("the great " + magician)
+	return great_magicians
+
 magicians = ['alice', 'david', 'carolina']
-for magician in magicians:
-	print(magician.title() + ", that was a great trick!")
-	print("I can't wait to see your next trick, " + magician.title() + ".\n")
-print("Thank you, everyone. That was a great magic show")
 
+great_magicians = make_great(magicians)
+show_magicians(magicians)
+show_magicians(great_magicians)
 
-baozis = ['dousha', 'xianrou', 'qingcai']
-for baozi in baozis:
-	print("I like " + baozi + " baozi")
-print("I really love baozi\n")
-
-
-pets = ['dog', 'cat', 'bird', 'fish']
-for pet in pets:
-	print("A " + pet + " would make a great pet")
-print("Any of these animals would make a great pet!\n")
-
+# ~ for magician in magicians:
+	# ~ print(magician.title() + ", that was a great trick!")
+	# ~ print("I can't wait to see your next trick, " + magician.title() + ".\n")
+# ~ print("Thank you, everyone. That was a great magic show")
 
