@@ -20,3 +20,19 @@ class Restaurant():
 
     def increment_number_served(self, number):
         self.number_served += number
+
+class IceCreamStand(Restaurant):
+    def __init__(self, restaurant_name, cuisine_type, flavors = ['vanilla']):
+        super().__init__(restaurant_name, cuisine_type)
+        self.flavors = flavors
+
+    def show_icecream_flavors(self):
+        print("Ice cream flavors:")
+        for flavor in self.flavors:
+            print(flavor)
+
+flavors = ['lemmon', 'strawberry', 'vanilla']
+ice_cream_stand = IceCreamStand('ls', 'sweet', flavors[:])
+
+ice_cream_stand.describe_restaurant()
+ice_cream_stand.show_icecream_flavors()
