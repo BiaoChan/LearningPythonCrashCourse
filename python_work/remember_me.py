@@ -36,7 +36,7 @@ def get_new_username():
 def greet_user():
     '''问候用户，并指出其名字'''
     username = get_stored_username()
-    if username:
+    if username and input("Is you " + username + "?(Y/N)")=='Y':
         print("Welcome back, " + username + "!")
     else:
         username = get_new_username()
