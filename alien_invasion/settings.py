@@ -10,7 +10,7 @@ class Settings():
         #飞船的设置
         self.ship_limit = 3
         self.bullet_height = 15
-        
+
         #子弹设置
         self.bullet_width = 3
         self.bullet_color = (60, 60, 60)
