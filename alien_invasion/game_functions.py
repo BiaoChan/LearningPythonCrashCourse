@@ -20,7 +20,8 @@ def check_key_down_events(event, ai_settings, screen, ship, bullets, stats,
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
-        fire_bullet(bullets, ai_settings, screen, ship)
+        if stats.game_active:
+            fire_bullet(bullets, ai_settings, screen, ship)
     elif event.key == pygame.K_q:
         game_exit(stats)
     elif event.key == pygame.K_p:
@@ -67,10 +68,7 @@ def start_game(stats, aliens, bullets, ship, screen, ai_settings, sb):
     stats.game_active = True
 
     #重置记分牌图像
-    sb.prep_score()
-    sb.prep_high_score()
-    sb.prep_level()
-    sb.prep_ship()
+    sb.prep_image()
 
     #清空外星人列表和子弹列表
     aliens.empty()
@@ -113,11 +111,6 @@ def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     check_bullet_alien_collision(ai_settings, screen, stats, sb, ship, aliens,
             bullets)
 
-    if len(aliens) == 0:
-        #删除现有子弹并创建一群新的外星人
-        bullets.empty()
-        create_fleet(ai_settings, screen, ship, aliens)
-
 def check_bullet_alien_collision(ai_settings, screen, stats, sb, ship, aliens,
         bullets):
     """响应子弹和外星人的碰撞"""
@@ -131,15 +124,18 @@ def check_bullet_alien_collision(ai_settings, screen, stats, sb, ship, aliens,
         check_high_score(stats, sb)
 
     if len(aliens) == 0:
-        #如果整群外星人都被消灭， 就提高一个等级
-        bullets.empty()
-        ai_settings.increase_speed()
+        start_new_level(bullets, ai_settings, stats, sb, screen, ship, aliens)
 
-        #提高等级
-        stats.level += 1
-        sb.prep_level()
+def start_new_level(bullets, ai_settings, stats, sb, screen, ship, aliens):
+    #如果整群外星人都被消灭， 就提高一个等级
+    bullets.empty()
+    ai_settings.increase_speed()
 
-        create_fleet(ai_settings, screen, ship, aliens)
+    #提高等级
+    stats.level += 1
+    sb.prep_level()
+
+    create_fleet(ai_settings, screen, ship, aliens)
 
 
 

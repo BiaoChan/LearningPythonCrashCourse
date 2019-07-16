@@ -18,17 +18,13 @@ class Scoreboard():
         self.font = pygame.font.SysFont(None, 48)
 
         #准备初始得分图像
-        self.prep_score()
-        self.prep_high_score()
-        self.prep_level()
-        self.prep_ship()
+        self.prep_image()
 
     def prep_score(self):
         """将得分转换为一副渲染的图像"""
         rounded_score = int(round(self.stats.score, -1))
         score_str = "{:,}".format(rounded_score)
-        self.score_image = self.font.render(score_str, True, self.text_color,
-            self.ai_settings.bg_color)
+        self.score_image = self.font.render(score_str, True, self.text_color)
 
         #将得分放在右上角
         self.score_rect = self.score_image.get_rect()
@@ -47,7 +43,7 @@ class Scoreboard():
         high_score = int(round(self.stats.high_score, -1))
         high_score_str = "{:,}".format(high_score)
         self.high_score_image = self.font.render(high_score_str, True,
-            self.text_color, self.ai_settings.bg_color)
+            self.text_color)
 
         #将最高得分放在屏幕顶部中央
         self.high_score_rect = self.high_score_image.get_rect()
@@ -57,7 +53,7 @@ class Scoreboard():
     def prep_level(self):
         """将等级转换为渲染的图像"""
         self.level_image = self.font.render(str(self.stats.level), True,
-            self.text_color, self.ai_settings.bg_color)
+            self.text_color)
 
         """将等级放在得分下面"""
         self.level_rect = self.level_image.get_rect()
@@ -72,3 +68,9 @@ class Scoreboard():
             ship.rect.x = 10 + ship_number * ship.rect.width
             ship.rect.y = 10
             self.ships.add(ship)
+
+    def prep_image(self):
+        self.prep_score()
+        self.prep_high_score()
+        self.prep_level()
+        self.prep_ship()
