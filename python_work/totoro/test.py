@@ -24,14 +24,19 @@ def check_events(stats):
 
 
 def main():
-    screen = pygame.display.set_mode((100,100))
+    # screen = pygame.display.set_mode((100,100))
+    #
+    #
+    # stats = Stats()
+    # while True:
+    #     stats.fps += 1
+    #     screen.fill((0,0,0))
+    #     check_events(stats)
+    #     pygame.display.flip()
+    t = time.time()
+    time.sleep(1)
+    t2 = time.time()
+    print(t2-t)
 
-
-    stats = Stats()
-    while True:
-        stats.fps += 1
-        screen.fill((0,0,0))
-        check_events(stats)
-        pygame.display.flip()
 
 main()

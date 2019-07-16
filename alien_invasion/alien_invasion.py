@@ -8,6 +8,7 @@ from game_stats import Game_stats
 import game_functions as gf
 from button import Button
 from scoreboard import Scoreboard
+from fps import Fps
 
 def run_game():
     #初始化游戏、设置和屏幕对象
@@ -24,6 +25,9 @@ def run_game():
     stats = Game_stats(ai_settings)
     sb = Scoreboard(ai_settings, screen, stats)
 
+    #创建fps模块实例
+    fb = Fps(screen)
+
     #创建一艘飞船，一个子弹编组和一个外星人编组
     ship = Ship(ai_settings, screen)
     bullets = Group()
@@ -35,7 +39,7 @@ def run_game():
     #开始游戏的主循环
     while True:
         gf.check_events(ai_settings, screen, stats, play_button, ship, aliens,
-            bullets, sb)
+            bullets, sb, fb)
 
         if stats.game_active:
             ship.update()
@@ -45,7 +49,7 @@ def run_game():
                 sb)
 
         gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
-            play_button)
+            play_button, fb)
 
 
 
